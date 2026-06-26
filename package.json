@@ -1,0 +1,29 @@
+{
+  "name": "commerceops-ai-os",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "AI automation and systems engineering portfolio project for e-commerce operations.",
+  "scripts": {
+    "data:download": "node scripts/download-public-data.mjs",
+    "data:convert": "python3 scripts/export-online-retail-csv.py",
+    "data:bootstrap": "npm run data:download && npm run data:convert && npm run data:prepare",
+    "data:prepare": "node scripts/prepare-warehouse-data.mjs --scale small",
+    "data:prepare:medium": "node scripts/prepare-warehouse-data.mjs --scale medium",
+    "data:prepare:large": "node scripts/prepare-warehouse-data.mjs --scale large",
+    "db:up": "docker compose up -d postgres adminer",
+    "db:down": "docker compose down",
+    "db:schema": "psql \"postgresql://commerceops:commerceops@localhost:5432/commerceops\" -f database/schema.sql",
+    "db:load": "psql \"postgresql://commerceops:commerceops@localhost:5432/commerceops\" -f data/generated/load.sql",
+    "db:reset": "npm run db:schema && npm run db:load"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^9.9.0",
+    "adm-zip": "^0.5.16",
+    "csv-parse": "^5.6.0",
+    "csv-stringify": "^6.5.2"
+  }
+}
