@@ -84,3 +84,6 @@ Raw downloaded files are written to `data/raw`. Warehouse CSV files are written 
 
 - [CommerceOps AI OS Plan](docs/commerceops-ai-os-plan.md)
 - [Project 1 Data Warehouse](docs/project-1-data-warehouse.md)
+- [Architecture](docs/architecture.md)
+- [Data Dictionary](docs/data-dictionary.md)
+- [Saved SQL Queries](database/queries/README.md)

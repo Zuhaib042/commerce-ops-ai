@@ -53,6 +53,14 @@ Those come in later projects.
 | `commerce.v_marketing_performance` | Spend, revenue, ROAS, CPC, CPA by platform and campaign |
 | `commerce.v_support_summary` | Ticket volume and sentiment by issue type |
 
+## Portfolio Documentation
+
+Project 1.1 makes the warehouse explainable:
+
+- [Architecture](architecture.md)
+- [Data Dictionary](data-dictionary.md)
+- [Saved SQL Queries](../database/queries/README.md)
+
 ## Data Quality Targets
 
 The generated warehouse data should be:
