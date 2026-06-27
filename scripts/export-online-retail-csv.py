@@ -9,7 +9,7 @@ try:
 except ImportError:
     sys.exit(
         "Missing dependency: openpyxl. Install it with "
-        "`python3 -m pip install -r requirements.txt`."
+        "`npm run py:venv && npm run py:install`."
     )
 
 

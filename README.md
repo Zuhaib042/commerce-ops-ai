@@ -20,8 +20,16 @@ Project 1 creates the data backbone for the whole system:
 Install dependencies:
 
 ```bash
-npm install
-python3 -m pip install -r requirements.txt
+npm run setup
+```
+
+This creates a local Python virtual environment in `.venv`, so Homebrew/macOS will not block package installation with an `externally-managed-environment` error.
+
+If you already ran `npm install`, you can set up only the Python side:
+
+```bash
+npm run py:venv
+npm run py:install
 ```
 
 Download the public retail dataset:
@@ -51,13 +59,13 @@ npm run db:up
 Create schema:
 
 ```bash
-psql "postgresql://commerceops:commerceops@localhost:5432/commerceops" -f database/schema.sql
+npm run db:schema
 ```
 
 Load generated data:
 
 ```bash
-psql "postgresql://commerceops:commerceops@localhost:5432/commerceops" -f data/generated/load.sql
+npm run db:load
 ```
 
 Adminer is available at `http://localhost:8080` after Docker starts.

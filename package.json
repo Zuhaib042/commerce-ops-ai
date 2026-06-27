@@ -5,8 +5,11 @@
   "type": "module",
   "description": "AI automation and systems engineering portfolio project for e-commerce operations.",
   "scripts": {
+    "setup": "npm install && npm run py:venv && npm run py:install",
+    "py:venv": "python3 -m venv .venv",
+    "py:install": ".venv/bin/python -m pip install --upgrade pip && .venv/bin/python -m pip install -r requirements.txt",
     "data:download": "node scripts/download-public-data.mjs",
-    "data:convert": "python3 scripts/export-online-retail-csv.py",
+    "data:convert": ".venv/bin/python scripts/export-online-retail-csv.py",
     "data:bootstrap": "npm run data:download && npm run data:convert && npm run data:prepare",
     "data:prepare": "node scripts/prepare-warehouse-data.mjs --scale small",
     "data:prepare:medium": "node scripts/prepare-warehouse-data.mjs --scale medium",
