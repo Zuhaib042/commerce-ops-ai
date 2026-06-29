@@ -26,6 +26,21 @@ services:
     depends_on:
       - postgres
 
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    container_name: commerceops-api
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql://commerceops:commerceops@postgres:5432/commerceops
+      API_PORT: 4000
+      API_CORS_ORIGIN: http://localhost:3000
+    ports:
+      - "4000:4000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
 volumes:
   postgres_data:
-

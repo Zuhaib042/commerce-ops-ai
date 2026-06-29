@@ -9,6 +9,7 @@ The current system is intentionally free-tier friendly:
 - Local and cloud demo infrastructure can run with Docker Compose.
 - Postgres stores the operational warehouse.
 - Adminer gives a lightweight database browser.
+- NestJS exposes a read-only API for dashboards, agents, and automations.
 - Source data comes from the UCI Online Retail dataset.
 - Faker enriches missing operational systems such as suppliers, support, finance, ads, and workflow events.
 
@@ -272,4 +273,3 @@ erDiagram
 ## Why This Matters For The Portfolio
 
 This architecture shows that the project is more than a chatbot. It has a real operating data layer, a repeatable data pipeline, warehouse views, operational entities, and clear places for future dashboards, agents, and automations to connect.
-

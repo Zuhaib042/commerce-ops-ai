@@ -70,6 +70,31 @@ npm run db:load
 
 Adminer is available at `http://localhost:8080` after Docker starts.
 
+## Backend API
+
+Start the NestJS API in development mode:
+
+```bash
+npm run api:dev
+```
+
+The API runs at `http://localhost:4000/api`.
+
+Useful endpoints:
+
+```bash
+curl http://localhost:4000/api/health
+curl "http://localhost:4000/api/metrics/overview"
+curl "http://localhost:4000/api/metrics/revenue?limit=7"
+curl "http://localhost:4000/api/metrics/inventory-risk?status=reorder_now&limit=10"
+```
+
+For Docker:
+
+```bash
+docker compose up -d postgres adminer api
+```
+
 ## Dataset Scales
 
 ```bash
@@ -86,4 +111,5 @@ Raw downloaded files are written to `data/raw`. Warehouse CSV files are written 
 - [Project 1 Data Warehouse](docs/project-1-data-warehouse.md)
 - [Architecture](docs/architecture.md)
 - [Data Dictionary](docs/data-dictionary.md)
+- [Project 2 Backend API](docs/project-2-api.md)
 - [Saved SQL Queries](database/queries/README.md)
