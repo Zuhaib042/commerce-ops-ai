@@ -180,4 +180,92 @@ export class MetricsService {
         event_count DESC
     `);
   }
+
+  scenarioEvents(limit: number) {
+    return this.database.query(
+      `
+        WITH scenario_events AS (
+          SELECT
+            'orders' AS source_table,
+            scenario_tag,
+            COUNT(*)::int AS event_count,
+            MIN(order_date)::text AS first_seen,
+            MAX(order_date)::text AS last_seen
+          FROM commerce.orders
+          WHERE scenario_tag IS NOT NULL AND scenario_tag <> ''
+          GROUP BY scenario_tag
+
+          UNION ALL
+
+          SELECT
+            'ad_campaign_daily_metrics' AS source_table,
+            scenario_tag,
+            COUNT(*)::int AS event_count,
+            MIN(metric_date)::text AS first_seen,
+            MAX(metric_date)::text AS last_seen
+          FROM commerce.ad_campaign_daily_metrics
+          WHERE scenario_tag IS NOT NULL AND scenario_tag <> ''
+          GROUP BY scenario_tag
+
+          UNION ALL
+
+          SELECT
+            'email_campaigns' AS source_table,
+            scenario_tag,
+            COUNT(*)::int AS event_count,
+            MIN(sent_at)::text AS first_seen,
+            MAX(sent_at)::text AS last_seen
+          FROM commerce.email_campaigns
+          WHERE scenario_tag IS NOT NULL AND scenario_tag <> ''
+          GROUP BY scenario_tag
+
+          UNION ALL
+
+          SELECT
+            'support_threads' AS source_table,
+            scenario_tag,
+            COUNT(*)::int AS event_count,
+            MIN(opened_at)::text AS first_seen,
+            MAX(opened_at)::text AS last_seen
+          FROM commerce.support_threads
+          WHERE scenario_tag IS NOT NULL AND scenario_tag <> ''
+          GROUP BY scenario_tag
+
+          UNION ALL
+
+          SELECT
+            'finance_transactions' AS source_table,
+            scenario_tag,
+            COUNT(*)::int AS event_count,
+            MIN(transaction_date)::text AS first_seen,
+            MAX(transaction_date)::text AS last_seen
+          FROM commerce.finance_transactions
+          WHERE scenario_tag IS NOT NULL AND scenario_tag <> ''
+          GROUP BY scenario_tag
+
+          UNION ALL
+
+          SELECT
+            'workflow_events' AS source_table,
+            scenario_tag,
+            COUNT(*)::int AS event_count,
+            MIN(occurred_at)::text AS first_seen,
+            MAX(occurred_at)::text AS last_seen
+          FROM commerce.workflow_events
+          WHERE scenario_tag IS NOT NULL AND scenario_tag <> ''
+          GROUP BY scenario_tag
+        )
+        SELECT
+          source_table,
+          scenario_tag,
+          event_count,
+          first_seen,
+          last_seen
+        FROM scenario_events
+        ORDER BY event_count DESC, scenario_tag, source_table
+        LIMIT $1
+      `,
+      [limit],
+    );
+  }
 }

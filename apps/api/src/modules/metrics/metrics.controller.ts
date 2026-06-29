@@ -54,4 +54,9 @@ export class MetricsController {
   workflowAlerts() {
     return this.metrics.workflowAlerts();
   }
+
+  @Get('scenario-events')
+  scenarioEvents(@Query('limit') limit?: string) {
+    return this.metrics.scenarioEvents(parseLimit(limit, 25, 100));
+  }
 }

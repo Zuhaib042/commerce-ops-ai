@@ -87,6 +87,7 @@ curl http://localhost:4000/api/health
 curl "http://localhost:4000/api/metrics/overview"
 curl "http://localhost:4000/api/metrics/revenue?limit=7"
 curl "http://localhost:4000/api/metrics/inventory-risk?status=reorder_now&limit=10"
+curl "http://localhost:4000/api/metrics/scenario-events?limit=10"
 ```
 
 For Docker:

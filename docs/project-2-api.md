@@ -68,6 +68,7 @@ postgresql://commerceops:commerceops@postgres:5432/commerceops
 | `GET` | `/api/metrics/customer-segments?limit=40` | Revenue by segment and acquisition channel |
 | `GET` | `/api/metrics/finance-accounts` | Finance account summary |
 | `GET` | `/api/metrics/workflow-alerts` | Workflow alert summary |
+| `GET` | `/api/metrics/scenario-events?limit=25` | Scenario-tagged business events across warehouse tables |
 | `GET` | `/api/products/top?limit=25` | Top products by gross profit |
 | `GET` | `/api/orders/recent?limit=25` | Recent orders |
 
@@ -78,6 +79,7 @@ curl http://localhost:4000/api/health
 curl "http://localhost:4000/api/metrics/revenue?limit=7"
 curl "http://localhost:4000/api/metrics/inventory-risk?status=reorder_now&limit=10"
 curl "http://localhost:4000/api/products/top?limit=10"
+curl "http://localhost:4000/api/metrics/scenario-events?limit=10"
 ```
 
 ## Why This Matters
